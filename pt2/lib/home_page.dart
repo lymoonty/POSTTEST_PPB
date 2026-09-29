@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'detail_product_page.dart';
 import 'cart_page.dart';
 
+// halaman utama aplikasi, stateless widget krna lom dinamis 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Hiro PetShop'),
         actions: [
+          // Tombol Ikon Keranjang untuk Navigasi ke CartPage
           IconButton(
             icon: const Icon(Icons.shopping_cart_outlined),
             onPressed: () {
@@ -25,6 +27,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
 
+      // SafeArea memastikan konten tidak tertutup notch/status bar perangkat
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -49,7 +52,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // SEARCH
+                // form pencarian
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Cari produk...',
@@ -62,7 +65,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // FILTER PRODUK
+                // filter produk
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -92,7 +95,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // KATEGORI
+                // Kategori
                 const Text(
                   'Kategori',
                   style: TextStyle(
@@ -103,6 +106,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
+                // baris card kategori hewan 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -126,9 +130,10 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
+                // Grid/Baris Produk Menggunakan Expanded Agar Pembagian Lebar Seimbang (50:50)
                 Row(
                   children: [
-                    // DOG FOOD
+                    // dog food
                     Expanded(
                       child: productCard(
                         context,
@@ -141,7 +146,7 @@ class HomePage extends StatelessWidget {
 
                     const SizedBox(width: 12),
 
-                    // CAT FOOD
+                    // cat food
                     Expanded(
                       child: productCard(
                         context,
@@ -161,7 +166,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // CATEGORY CARD
+  /// Helper Method untuk membuat Kartu Kategori (`categoryCard`) Bersifat reusable untuk setiap ikon dan judul kategori hewan.
   Widget categoryCard(
       IconData icon,
       String title,
@@ -201,7 +206,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // PRODUCT CARD
+  // Helper Method untuk membuat Kartu Produk Populer (`productCard`) Dilengkapi fungsi `GestureDetector` untuk navigasi ke `DetailProductPage` saat diklik.
   Widget productCard(
       BuildContext context,
       String name,
@@ -210,6 +215,7 @@ class HomePage extends StatelessWidget {
       String imagePath,
       ) {
     return GestureDetector(
+      // Aksi saat kartu produk di-tap / diklik oleh pengguna
       onTap: () {
         Navigator.push(
           context,
@@ -238,13 +244,14 @@ class HomePage extends StatelessWidget {
         ),
         child: Stack(
           children: [
+            // Layout Isi Utama Kartu (Gambar, Nama, Deskripsi, Harga)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
                 // GAMBAR PRODUK
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12), // memotong sudut gambar
                   child: Image.asset(
                     imagePath,
                     width: double.infinity,
