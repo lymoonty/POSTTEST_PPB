@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// halaman cart_page, menggunakan stateless krna tmpilan blm dinamis 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
@@ -8,6 +8,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Keranjang'),
+        // tombol kembali ke hlman sebelumny
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -15,10 +16,12 @@ class CartPage extends StatelessWidget {
           },
         ),
       ),
+      // SingleChildScrollView digunakan agar seluruh isi halaman dapat di-scroll jika overflow
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            // Pemanggilan method helper cartItem untuk produk 1
             cartItem(
               'Dog Food Premium',
               'Rp 150.000',
@@ -26,6 +29,7 @@ class CartPage extends StatelessWidget {
               'assets/images/makanan_anjing.jpg',
             ),
             const SizedBox(height: 12),
+            // Pemanggilan method helper cartItem untuk produk 2
             cartItem(
               'Cat Food Tuna',
               'Rp 120.000',
@@ -39,6 +43,7 @@ class CartPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
+                // Efek bayangan halus pada card total
                 boxShadow: const [
                   BoxShadow(
                     blurRadius: 6,
@@ -70,7 +75,8 @@ class CartPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-
+            
+          // SizedBox width double.infinity membuat tombol selebar layar
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -108,6 +114,7 @@ class CartPage extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
+              // Box Container untuk Gambar Produk
               Container(
                 width: 70,
                 height: 70,
@@ -120,6 +127,7 @@ class CartPage extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
+              // Badge Merah Penunjuk Jumlah Produk (Posisi di pojok kanan atas gambar)
               Positioned(
                 top: -6,
                 right: -6,
