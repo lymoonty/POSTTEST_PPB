@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Halaman Profil Pengguna (ProfilPage), Menggunakan StatelessWidget karena seluruh tampilan bersifat statis dan belum terhubung ke State Management.
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
 
@@ -9,18 +10,24 @@ class ProfilPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profil'),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            // CircleAvatar membuat komponen gambar/ikon berbentuk lingkaran
             const CircleAvatar(
-              radius: 45,
+              radius: 45, // Ukuran jari-jari lingkaran
               child: Icon(
                 Icons.person,
                 size: 50,
               ),
             ),
+
             const SizedBox(height: 12),
+
+            // informasi oengguna
+            // Nama Pengguna
             const Text(
               'Pet Lover',
               style: TextStyle(
@@ -28,11 +35,16 @@ class ProfilPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 4),
+
+            // Email Pengguna
             const Text('petlover@email.com'),
 
             const SizedBox(height: 30),
 
+            // daftar menu profil
+            // Pemanggilan method helper profileMenu untuk masing-masing opsi menu
             profileMenu(
               Icons.person_outline,
               'Edit Profil',
@@ -55,12 +67,14 @@ class ProfilPage extends StatelessWidget {
     );
   }
 
+  /// Helper Method untuk membuat item Menu Profil (`profileMenu`)
   Widget profileMenu(IconData icon, String title) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 12), // Jarak antar item menu di bagian bawah
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
+        // Efek bayangan pada setiap kartu menu
         boxShadow: const [
           BoxShadow(
             blurRadius: 5,
@@ -69,14 +83,16 @@ class ProfilPage extends StatelessWidget {
           ),
         ],
       ),
+      // ListTile menyediakan struktur standar untuk item list (Ikon Kiri, Teks, Ikon Kanan)
       child: ListTile(
         leading: Icon(
           icon,
-          color: Colors.blue,
+          color: Colors.blue, // Ikon utama di sebelah kiri
         ),
-        title: Text(title),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {},
+        title: Text(title), // Judul menu
+        trailing: const Icon(Icons.chevron_right), // Ikon panah petunjuk di sebelah kanan
+        onTap: () {
+        },
       ),
     );
   }
