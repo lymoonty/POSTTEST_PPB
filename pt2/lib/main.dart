@@ -34,8 +34,7 @@ class PetShopApp extends StatelessWidget {
   }
 }
 
-// MainPage digunakan sebagai pembungkus halaman
-// dan BottomNavigationBar
+// MainPage digunakan sebagai pembungkus halaman dan BottomNavigationBar
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
