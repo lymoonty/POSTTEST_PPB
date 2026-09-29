@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+// halaman detail produk 
+/// Menggunakan StatefulWidget karena mengelola state lokal berupa controller teks (`TextEditingController`).
 class DetailProductPage extends StatefulWidget {
+  // data produk yang dikirim dari halaman sebelumnya 
   final String name;
   final String description;
   final String price;
@@ -19,11 +22,13 @@ class DetailProductPage extends StatefulWidget {
 }
 
 class _DetailProductPageState extends State<DetailProductPage> {
+  // Controller untuk mengontrol dan mengambil nilai inputan jumlah produk (default nilai: '1')
   final TextEditingController quantityController =
   TextEditingController(text: '1');
 
   @override
   void dispose() {
+    // membersihkan controller dari memori widget saat widget dihncurkan agar tidak memory leak
     quantityController.dispose();
     super.dispose();
   }
@@ -33,6 +38,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Produk'),
+        // tombol kembali ke halaman sebelmnya
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -44,14 +50,13 @@ class _DetailProductPageState extends State<DetailProductPage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start, // mengatur smwa elemen rata kiri 
           children: [
 
-            // =========================
             // GAMBAR PRODUK
-            // =========================
             Stack(
               children: [
+                // box container latar belakang gmbr dgn efek shadow
                 Container(
                   width: double.infinity,
                   height: 250,
@@ -66,13 +71,14 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       ),
                     ],
                   ),
+                  // ClipRRect memotong gambar agar sudutnya melengkung mengikuti border radius
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       widget.imagePath,
                       width: double.infinity,
                       height: 250,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.contain, // Memastikan gambar muat di dalam box tanpa terpotong
                     ),
                   ),
                 ),
