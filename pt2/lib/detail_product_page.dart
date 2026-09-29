@@ -4,14 +4,14 @@ class DetailProductPage extends StatefulWidget {
   final String name;
   final String description;
   final String price;
-  final IconData icon;
+  final String imagePath;
 
   const DetailProductPage({
     super.key,
     required this.name,
     required this.description,
     required this.price,
-    required this.icon,
+    required this.imagePath,
   });
 
   @override
@@ -40,11 +40,16 @@ class _DetailProductPageState extends State<DetailProductPage> {
           },
         ),
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+            // =========================
+            // GAMBAR PRODUK
+            // =========================
             Stack(
               children: [
                 Container(
@@ -61,12 +66,18 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       ),
                     ],
                   ),
-                  child: Icon(
-                    widget.icon,
-                    size: 120,
-                    color: Colors.blue,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      widget.imagePath,
+                      width: double.infinity,
+                      height: 250,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
+
+                // LABEL PRODUK PILIHAN
                 Positioned(
                   top: 15,
                   right: 15,
@@ -93,6 +104,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
             const SizedBox(height: 20),
 
+            // NAMA PRODUK
             Text(
               widget.name,
               style: const TextStyle(
@@ -103,6 +115,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
             const SizedBox(height: 8),
 
+            // DESKRIPSI
             Text(
               widget.description,
               style: const TextStyle(
@@ -112,6 +125,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
             const SizedBox(height: 12),
 
+            // HARGA
             Text(
               'Rp ${widget.price}',
               style: const TextStyle(
@@ -123,6 +137,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
             const SizedBox(height: 24),
 
+            // JUMLAH
             const Text(
               'Jumlah',
               style: TextStyle(
@@ -143,6 +158,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
 
             const SizedBox(height: 20),
 
+            // TOMBOL TAMBAH KE KERANJANG
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(

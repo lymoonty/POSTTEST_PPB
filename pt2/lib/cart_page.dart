@@ -23,14 +23,14 @@ class CartPage extends StatelessWidget {
               'Dog Food Premium',
               'Rp 150.000',
               2,
-              Icons.pets,
+              'assets/images/makanan_anjing.jpg',
             ),
             const SizedBox(height: 12),
             cartItem(
               'Cat Food Tuna',
               'Rp 120.000',
               1,
-              Icons.pets,
+              'assets/images/makanan_kucing.jpg',
             ),
             const SizedBox(height: 24),
 
@@ -88,7 +88,7 @@ class CartPage extends StatelessWidget {
       String name,
       String price,
       int quantity,
-      IconData icon,
+      String imagePath,
       ) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -115,10 +115,9 @@ class CartPage extends StatelessWidget {
                   color: Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  icon,
-                  size: 35,
-                  color: Colors.blue,
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.contain,
                 ),
               ),
               Positioned(

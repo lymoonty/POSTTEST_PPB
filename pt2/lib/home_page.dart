@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -31,6 +32,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // GREETING
                 const Text(
                   'Halo, Pet Lovers! 🐾',
                   style: TextStyle(
@@ -38,12 +40,16 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 const SizedBox(height: 6),
+
                 const Text(
                   'Temukan kebutuhan terbaik untuk hewan kesayanganmu.',
                 ),
+
                 const SizedBox(height: 20),
 
+                // SEARCH
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Cari produk...',
@@ -56,6 +62,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
+                // FILTER PRODUK
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -85,6 +92,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
+                // KATEGORI
                 const Text(
                   'Kategori',
                   style: TextStyle(
@@ -107,6 +115,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
+                // PRODUK POPULER
                 const Text(
                   'Produk Populer',
                   style: TextStyle(
@@ -119,23 +128,27 @@ class HomePage extends StatelessWidget {
 
                 Row(
                   children: [
+                    // DOG FOOD
                     Expanded(
                       child: productCard(
                         context,
                         'Dog Food Premium',
-                        'Makanan anjing berkualitas',
-                        '150.000',
-                        Icons.pets,
+                        'Nature Gourmet Rasa Ayam',
+                        '272.200',
+                        'assets/images/makanan_anjing.jpg',
                       ),
                     ),
+
                     const SizedBox(width: 12),
+
+                    // CAT FOOD
                     Expanded(
                       child: productCard(
                         context,
-                        'Cat Food Tuna',
-                        'Makanan kucing rasa tuna',
-                        '120.000',
-                        Icons.pets,
+                        'Cat Food',
+                        'Royal Canin Hair and Skin',
+                        '250.000',
+                        'assets/images/makanan_kucing.jpg',
                       ),
                     ),
                   ],
@@ -148,10 +161,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget categoryCard(IconData icon, String title) {
+  // CATEGORY CARD
+  Widget categoryCard(
+      IconData icon,
+      String title,
+      ) {
     return Container(
       width: 75,
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(
+        vertical: 12,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -165,23 +184,30 @@ class HomePage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(icon, size: 30, color: Colors.blue),
+          Icon(
+            icon,
+            size: 30,
+            color: Colors.blue,
+          ),
           const SizedBox(height: 5),
           Text(
             title,
-            style: const TextStyle(fontSize: 12),
+            style: const TextStyle(
+              fontSize: 12,
+            ),
           ),
         ],
       ),
     );
   }
 
+  // PRODUCT CARD
   Widget productCard(
       BuildContext context,
       String name,
       String description,
       String price,
-      IconData icon,
+      String imagePath,
       ) {
     return GestureDetector(
       onTap: () {
@@ -192,7 +218,7 @@ class HomePage extends StatelessWidget {
               name: name,
               description: description,
               price: price,
-              icon: icon,
+              imagePath: imagePath,
             ),
           ),
         );
@@ -215,32 +241,41 @@ class HomePage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    icon,
-                    size: 60,
-                    color: Colors.blue,
+
+                // GAMBAR PRODUK
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    imagePath,
+                    width: double.infinity,
+                    height: 120,
+                    fit: BoxFit.contain,
                   ),
                 ),
+
                 const SizedBox(height: 10),
+
+                // NAMA PRODUK
                 Text(
                   name,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 const SizedBox(height: 4),
+
+                // DESKRIPSI
                 Text(
                   description,
-                  style: const TextStyle(fontSize: 12),
+                  style: const TextStyle(
+                    fontSize: 12,
+                  ),
                 ),
+
                 const SizedBox(height: 8),
+
+                // HARGA
                 Text(
                   'Rp $price',
                   style: const TextStyle(
@@ -251,6 +286,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
 
+            // LABEL POPULER
             Positioned(
               top: 8,
               right: 8,
